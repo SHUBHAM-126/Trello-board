@@ -9,6 +9,7 @@ function App() {
 
   const [taskList, setTaskList] = useState([...intialData])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [taskEditDetails, setTaskEditDetails] = useState(null)
 
   const handleDragEnd = (results) => {
 
@@ -67,7 +68,7 @@ function App() {
 
             {taskList.map((item, index) => (
               <div key={item.title}>
-                <SingleColumn data={item} setIsModalOpen={setIsModalOpen} />
+                <SingleColumn data={item} setIsModalOpen={setIsModalOpen} setTaskEditDetails={setTaskEditDetails} />
               </div>
             ))}
 
@@ -80,7 +81,9 @@ function App() {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         setTaskList={setTaskList}
-        taskList = {taskList}
+        taskList={taskList}
+        taskEditDetails={taskEditDetails}
+        setTaskEditDetails={setTaskEditDetails}
       />
     </div>
   );

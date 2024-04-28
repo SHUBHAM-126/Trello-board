@@ -3,7 +3,7 @@ import styles from './SingleColumn.module.css'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from "react-icons/ai";
 
-export default function SingleColumn({ data, setIsModalOpen }) {
+export default function SingleColumn({ data, setIsModalOpen, setTaskEditDetails }) {
     return (
         <div className={styles.column}>
             <h2>{data.title}</h2>
@@ -19,7 +19,12 @@ export default function SingleColumn({ data, setIsModalOpen }) {
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
                                         >
-                                            <TaskCard data={item} />
+                                            <TaskCard
+                                                data={item}
+                                                listTitle={data.title}
+                                                setTaskEditDetails={setTaskEditDetails}
+                                                setIsModalOpen={setIsModalOpen}
+                                            />
                                         </div>
                                     )}
                                 </Draggable>

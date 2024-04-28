@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import styles from './AddCardModal.module.css'
 import { IoCloseSharp } from "react-icons/io5";
@@ -22,7 +22,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, setTaskList }) {
+export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, setTaskList, taskEditDetails, setTaskEditDetails }) {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -36,34 +36,79 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const handleSubmit = (e) => {
-
-        e.preventDefault()
+    // VALIDATE FORM DATA
+    const validate = () => {
         setError('')
 
         if (!/^[a-zA-Z\s]+$/.test(formData.title)) {
             setError("Title can only contain alphabets.")
-            return
+            return false
         }
 
         if (formData.description.length < 25) {
             setError(`Description should have atleast 25 characters. Currently, it has ${formData.description.length} characters.`)
-            return
+            return false
+        }
+
+        return true
+    }
+
+    // HANDLE ADD CARD
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+
+        if (!validate()) {
+            return false
         }
 
         const listIndex = taskList.findIndex(item => item.title == formData.selectedList)
 
         const newList = [...taskList[listIndex].items]
 
-        newList.push(
-            {
+        const newTaskList = [...taskList]
+
+        // Editing card: Replace same task with new details
+        if (taskEditDetails && formData.selectedList == taskEditDetails.listTitle) {
+            const taskIndex = newList.findIndex(item => item.taskId == taskEditDetails.taskId)
+            newList[taskIndex] = {
                 taskTitle: formData.title,
                 taskDescription: formData.description,
                 taskId: new Date().getTime().toString()
             }
-        )
+        }
+        // Editing card: Remove task from old list and add to new one
+        else if (taskEditDetails && formData.selectedList !== taskEditDetails.listTitle) {
 
-        const newTaskList = [...taskList]
+            const oldListIndex = taskList.findIndex(item => item.title == taskEditDetails.listTitle)
+            const oldList = [...taskList[oldListIndex].items]
+            const oldTaskIndex = oldList.findIndex(item => item.taskId == taskEditDetails.taskId)
+            oldList.splice(oldTaskIndex, 1)
+
+            newTaskList[oldListIndex] = {
+                ...taskList[oldListIndex],
+                items: oldList
+            }
+
+            newList.push(
+                {
+                    taskTitle: formData.title,
+                    taskDescription: formData.description,
+                    taskId: new Date().getTime().toString()
+                }
+            )
+
+        }
+        // Adding new task 
+        else {
+            newList.push(
+                {
+                    taskTitle: formData.title,
+                    taskDescription: formData.description,
+                    taskId: new Date().getTime().toString()
+                }
+            )
+        }
 
         newTaskList[listIndex] = {
             ...taskList[listIndex],
@@ -72,16 +117,39 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
 
         setTaskList(newTaskList)
 
+        setTaskEditDetails(null)
+
         setFormData({ title: '', description: '', selectedList: '' })
 
         setIsModalOpen(false)
 
     }
 
+    // SET FORM INPUT DETAILS IF EDITING A TASK
+    useEffect(() => {
+
+        if (taskEditDetails) {
+            setFormData({
+                title: taskEditDetails.taskTitle,
+                description: taskEditDetails.taskDescription,
+                selectedList: taskEditDetails.listTitle
+            })
+        }
+
+    }, [taskEditDetails])
+
+    // HANDLE MODAL CLOSE
+    const handleClose = () => {
+        setTaskEditDetails(null)
+        setFormData({ title: '', description: '', selectedList: '' })
+        setError('')
+        setIsModalOpen(false)
+    }
+
     return (
         <Modal
             isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
+            onRequestClose={handleClose}
             style={customStyles}
             contentLabel='Add new card modal'
         >
@@ -120,7 +188,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
 
             <button
                 className={styles.closeBtn}
-                onClick={() => setIsModalOpen(false)}
+                onClick={handleClose}
             >
                 <IoCloseSharp />
             </button>
