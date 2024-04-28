@@ -146,6 +146,27 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
         setIsModalOpen(false)
     }
 
+    // HANDLE DELETE TASK
+    const handleDelete = () => {
+
+        const listIndex = taskList.findIndex(item => item.title == taskEditDetails.listTitle)
+        const newList = [...taskList[listIndex].items]
+        const taskIndex = newList.findIndex(item => item.taskId == taskEditDetails.taskId)
+        newList.splice(taskIndex, 1)
+
+        const newTaskList = [...taskList]
+
+        newTaskList[listIndex] = {
+            ...taskList[listIndex],
+            items: newList
+        }
+
+        setTaskList(newTaskList)
+        setTaskEditDetails(null)
+        setFormData({ title: '', description: '', selectedList: '' })
+        setIsModalOpen(false)
+    }
+
     return (
         <Modal
             isOpen={isModalOpen}
@@ -154,7 +175,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
             contentLabel='Add new card modal'
         >
 
-            <h3 className={styles.title}>Add a task</h3>
+            <h3 className={styles.title}>{taskEditDetails ? 'Edit the task' : 'Add a task'}</h3>
 
             <form className={styles.form} onSubmit={handleSubmit}>
                 <input
@@ -183,7 +204,12 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
                     <option value="Doing">Doing</option>
                     <option value="Done">Done</option>
                 </select>
-                <button>Submit</button>
+                <div className={styles.buttonsWrapper}>
+                    <button type='submit' className={styles.submitButton}>Submit</button>
+                    {taskEditDetails && (
+                        <button type='button' className={styles.deleteButton} onClick={handleDelete}>Delete the task</button>
+                    )}
+                </div>
             </form>
 
             <button

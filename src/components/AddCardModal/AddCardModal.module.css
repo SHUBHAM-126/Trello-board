@@ -24,7 +24,7 @@
     outline: 0;
 }
 
-.form select option{
+.form select option {
     background: #333;
 }
 
@@ -33,7 +33,7 @@
     color: #fff;
 }
 
-.form button {
+.submitButton {
     background: var(--primary);
     border: 0;
     border-radius: 10px;
@@ -43,33 +43,54 @@
     transition: background 300ms ease;
 }
 
-.form button:hover {
+.submitButton:hover {
     color: var(--primary);
     background: rgba(255, 255, 255, 0.9);
 }
 
-.closeBtn{
-    border:0;
-    background:rgba(0,0,0,0);
-    position: absolute;
-    top:8px;
-    right: 8px;
-    color:#ccc;
+.deleteButton {
+    background: rgba(255,0,0,0.7);
+    border: 0;
+    border-radius: 10px;
+    padding: 16px 32px;
+    color: #fff;
     cursor: pointer;
-    font-size: 1.1em;
-    padding:0;
-}
-.closeBtn:hover{
-    color:#fff;
+    transition: background 300ms ease;
 }
 
-.error{
-    color:rgba(255,0,0,1);
-    background:rgba(255,0,0,0.1);
-    padding:12px;
+.deleteButton:hover {
+    color: rgba(255,0,0,1);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.closeBtn {
+    border: 0;
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 0;
+}
+
+.closeBtn:hover {
+    color: #fff;
+}
+
+.error {
+    color: rgba(255, 0, 0, 1);
+    background: rgba(255, 0, 0, 0.1);
+    padding: 12px;
     border-radius: 5px;
-    margin-top:20px;
+    margin-top: 20px;
     display: flex;
-    gap:2px;
+    gap: 2px;
     align-items: center;
+}
+
+.buttonsWrapper {
+    display: flex;
+    gap: 10px;
 }
