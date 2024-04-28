@@ -1,6 +1,6 @@
 const data = [
     {
-        title: "To Do",
+        title: "To do",
         items: [
             {
                 taskId: '1',

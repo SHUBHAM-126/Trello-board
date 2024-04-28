@@ -1,8 +1,9 @@
 import TaskCard from '../TaskCard/TaskCard'
 import styles from './SingleColumn.module.css'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { AiOutlinePlus } from "react-icons/ai";
 
-export default function SingleColumn({ data }) {
+export default function SingleColumn({ data, setIsModalOpen }) {
     return (
         <div className={styles.column}>
             <h2>{data.title}</h2>
@@ -28,6 +29,13 @@ export default function SingleColumn({ data }) {
                     </div>
                 )}
             </Droppable>
+            <button
+                className={styles.addCardBtn}
+                onClick={() => setIsModalOpen(true)}
+            >
+                <AiOutlinePlus />
+                <span>Add a card</span>
+            </button>
         </div>
     )
 }

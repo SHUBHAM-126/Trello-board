@@ -4,6 +4,8 @@
   /* Global variables to be defined here */
   --font-light: rgba(255, 255, 255, 1);
   --white: #ffffff;
+  --bg-primary: rgba(1, 83, 206, 0.15);
+  --primary: rgba(1, 83, 206, 1);
 }
 
 *,
@@ -80,6 +82,7 @@ a {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap:10px;
+  align-items: flex-start;
 }
 
 .columns-wrapper > div{

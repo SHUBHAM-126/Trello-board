@@ -9,9 +9,25 @@
     font-size:20px;
     font-weight: 500;
     margin-bottom:20px;
+    padding:0 12px;
 }
 .tasksWrapper{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+.addCardBtn{
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0);
+    border:0;
+    margin-top:5px;
+    padding:14px 10px;
+    color:#ccc;
+    gap:4px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.addCardBtn:hover{
+    background:var(--bg-primary);
 }

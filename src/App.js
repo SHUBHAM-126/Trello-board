@@ -3,10 +3,12 @@ import Navbar from "./components/Navbar/Navbar";
 import intialData from './initialData.js'
 import SingleColumn from "./components/SingleColumn/SingleColumn.jsx";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import AddCardModal from "./components/AddCardModal/AddCardModal.jsx";
 
 function App() {
 
   const [taskList, setTaskList] = useState([...intialData])
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleDragEnd = (results) => {
 
@@ -65,7 +67,7 @@ function App() {
 
             {taskList.map((item, index) => (
               <div key={item.title}>
-                <SingleColumn data={item} />
+                <SingleColumn data={item} setIsModalOpen={setIsModalOpen} />
               </div>
             ))}
 
@@ -73,6 +75,13 @@ function App() {
         </div>
 
       </div>
+
+      <AddCardModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        setTaskList={setTaskList}
+        taskList = {taskList}
+      />
     </div>
   );
 }
