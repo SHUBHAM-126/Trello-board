@@ -2,7 +2,7 @@
 
 :root {
   /* Global variables to be defined here */
-  --font-light: rgba(255, 255, 255, 0.7);
+  --font-light: rgba(255, 255, 255, 1);
   --white: #ffffff;
 }
 
@@ -73,4 +73,16 @@ a {
 #root,
 #__next {
   isolation: isolate;
+}
+
+.columns-wrapper {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+}
+
+.columns-wrapper > div{
+  background:#191919;
+  border-radius: 5px;
 }
