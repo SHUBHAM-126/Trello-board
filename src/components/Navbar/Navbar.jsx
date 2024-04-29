@@ -1,4 +1,4 @@
-import logo from '../../assets/trello.png'
+import { BsTrello } from "react-icons/bs";
 import IconButton from '../IconButton/IconButton';
 import styles from './Navbar.module.css'
 import { CgMenuGridR } from "react-icons/cg";
@@ -20,7 +20,7 @@ export default function Navbar({ setIsModalOpen, taskList, setTaskEditDetails })
                 <SearchBar taskList={taskList} setTaskEditDetails={setTaskEditDetails} setIsModalOpen={setIsModalOpen} />
             </div>
             <a className={styles.logo}>
-                <img src={logo} alt='Trello' height={30} width={30} />
+                <BsTrello />
                 <h1>Trello</h1>
             </a>
             <div className={styles.innerWrapperRight}>

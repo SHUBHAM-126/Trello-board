@@ -1,5 +1,9 @@
 .card {
     cursor: pointer;
+    padding:4px 8px;
+}
+.card:hover{
+    background:rgba(0,0,0,0.1);
 }
 
 .card:nth-last-child(n+2) {

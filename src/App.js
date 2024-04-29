@@ -4,6 +4,8 @@ import intialData from './initialData.js'
 import SingleColumn from "./components/SingleColumn/SingleColumn.jsx";
 import { DragDropContext } from "react-beautiful-dnd";
 import AddCardModal from "./components/AddCardModal/AddCardModal.jsx";
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
+import TitleBar from "./components/TitleBar/TitleBar.jsx";
 
 function App() {
 
@@ -76,20 +78,23 @@ function App() {
   return (
     <div>
       <Navbar setIsModalOpen={setIsModalOpen} taskList={taskList} setTaskEditDetails={setTaskEditDetails} />
-      <div>
+      <div className="main-grid">
+        <Sidebar />
+        <div>
+          <TitleBar />
+          <div className="columns-wrapper">
+            <DragDropContext
+              onDragEnd={handleDragEnd}
+            >
 
-        <div className="columns-wrapper">
-          <DragDropContext
-            onDragEnd={handleDragEnd}
-          >
+              {taskList.map((item, index) => (
+                <div key={item.title}>
+                  <SingleColumn data={item} setIsModalOpen={setIsModalOpen} setTaskEditDetails={setTaskEditDetails} />
+                </div>
+              ))}
 
-            {taskList.map((item, index) => (
-              <div key={item.title}>
-                <SingleColumn data={item} setIsModalOpen={setIsModalOpen} setTaskEditDetails={setTaskEditDetails} />
-              </div>
-            ))}
-
-          </DragDropContext>
+            </DragDropContext>
+          </div>
         </div>
 
       </div>
