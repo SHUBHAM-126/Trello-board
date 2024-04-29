@@ -56,9 +56,18 @@
 
 @media(max-width:767px){
     .searchForm{
-        height:30px;
+        height:36px;
+        background:#111;
+        border-radius: 0;
+    }
+    .searchForm input{
+        flex-grow: 1;
     }
     .searchForm button{
         font-size: 20px;
+    }
+    .searchResults{
+        width: calc(100% - 8px);
+        left: 4px;
     }
 }

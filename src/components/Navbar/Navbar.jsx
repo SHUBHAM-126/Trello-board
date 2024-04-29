@@ -10,20 +10,44 @@ import { AiOutlineBell } from "react-icons/ai";
 import Avatar from '../Avatar/Avatar';
 import icon from '../../assets/avatar.png'
 import { RiSearchLine } from "react-icons/ri";
+import { useEffect, useState } from "react";
 
 export default function Navbar({ setIsModalOpen, taskList, setTaskEditDetails }) {
+
+    const [isMobile, setIsMobile] = useState(window?.innerWidth < 768)
+    const [showMobSearch, setShowMobSearch] = useState(false)
+
+    // CHECK IF MOBILE
+    useEffect(() => {
+
+        const handleResize = () => setIsMobile(window?.innerWidth < 768)
+
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+
+    }, [])
 
     return (
         <header className={styles.header}>
             <div className={styles.innerWrapper}>
                 <IconButton><CgMenuGridR /></IconButton>
                 <IconButton><HiOutlineHome /></IconButton>
-                <div className={styles.searchWrapper}>
-                    <SearchBar taskList={taskList} setTaskEditDetails={setTaskEditDetails} setIsModalOpen={setIsModalOpen} />
+                <div className={showMobSearch ? styles.searchWrapperActive : styles.searchWrapper}>
+                    <SearchBar
+                        taskList={taskList}
+                        setTaskEditDetails={setTaskEditDetails}
+                        setIsModalOpen={setIsModalOpen}
+                        setShowMobSearch={setShowMobSearch}
+                    />
                 </div>
-                <div className={styles.mobileSearch}>
-                    <IconButton><RiSearchLine /></IconButton>
-                </div>
+                {isMobile && (
+                    <div>
+                        <IconButton onClick={() => setShowMobSearch(true)}>
+                            <RiSearchLine />
+                        </IconButton>
+                    </div>
+                )}
             </div>
             <a className={styles.logo}>
                 <BsTrello />

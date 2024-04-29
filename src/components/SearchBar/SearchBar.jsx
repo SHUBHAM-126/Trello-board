@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import styles from './SearchBar.module.css'
 import { RiSearchLine } from "react-icons/ri";
 import SearchTaskCard from './SearchTaskCard';
+import { AiOutlineClose } from "react-icons/ai";
 
-export default function SearchBar({ taskList, setTaskEditDetails, setIsModalOpen }) {
+export default function SearchBar({ taskList, setTaskEditDetails, setIsModalOpen, setShowMobSearch }) {
 
     const [input, setInput] = useState('')
 
@@ -56,16 +57,41 @@ export default function SearchBar({ taskList, setTaskEditDetails, setIsModalOpen
 
     }, [input])
 
+    // CHECK IF MOBILE
+    const [isMobile, setIsMobile] = useState(window?.innerWidth < 768)
+    useEffect(() => {
+
+        const handleResize = () => setIsMobile(window?.innerWidth < 768)
+
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+
+    }, [])
+
     return (
         <div className={styles.searchWrapper}>
             <form className={styles.searchForm} onSubmit={handleSearch}>
                 <input
                     value={input}
+                    placeholder='Search...'
                     onChange={(e) => setInput(e.target.value)}
                 />
-                <button type='submit'>
-                    <RiSearchLine />
-                </button>
+                {!isMobile && (
+                    <button type='submit'>
+                        <RiSearchLine />
+                    </button>
+                )}
+                {isMobile && (
+                    <button type='button'
+                        onClick={() => {
+                            setShowMobSearch(false)
+                            setInput('')
+                        }}
+                    >
+                        <AiOutlineClose />
+                    </button>
+                )}
             </form>
 
             {searchResults.length > 0 && (
@@ -79,6 +105,7 @@ export default function SearchBar({ taskList, setTaskEditDetails, setIsModalOpen
                                 setIsModalOpen={setIsModalOpen}
                                 key={task.taskId}
                                 setInput={setInput}
+                                setShowMobSearch={setShowMobSearch}
                             />
                         )
                         ))

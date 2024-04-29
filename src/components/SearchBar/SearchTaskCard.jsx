@@ -1,6 +1,6 @@
 import styles from './SearchTaskCard.module.css'
 
-export default function SearchTaskCard({ details, setTaskEditDetails, setIsModalOpen, setInput }) {
+export default function SearchTaskCard({ details, setTaskEditDetails, setIsModalOpen, setInput, setShowMobSearch }) {
 
     const handleClick = () => {
 
@@ -13,8 +13,11 @@ export default function SearchTaskCard({ details, setTaskEditDetails, setIsModal
 
         setIsModalOpen(true)
 
+        // FOR MOBILE
+        setShowMobSearch(false)
+
         setInput('')
-        
+
     }
 
     return (
