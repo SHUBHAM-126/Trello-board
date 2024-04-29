@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setIsModalOpen={setIsModalOpen} />
       <div>
 
         <div className="columns-wrapper">

@@ -1,0 +1,25 @@
+.searchForm{
+    background: rgba(255,255,255,0.1);
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding:5px 8px;
+}
+.searchForm input{
+    background:rgba(0,0,0,0);
+    padding:0;
+    border:0;
+    outline:0;
+    color:#fff;
+    min-width: 200px;
+    font-size: 14px;
+}
+.searchForm button{
+    background:rgba(0,0,0,0);
+    border:0;
+    padding:0;
+    color:#fff;
+    font-size:25px;
+    cursor: pointer;
+}

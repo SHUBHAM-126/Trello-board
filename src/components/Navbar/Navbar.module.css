@@ -1,7 +1,8 @@
 .header{
     display: flex;
     padding:10px;
-    justify-content: center;
+    justify-content: space-between;
+    gap:10px;
     background:rgba(0,0,0,0.5);
 }
 
@@ -17,4 +18,19 @@
 .logo h1{
     color:var(--font-light);
     font-size:30px;
+}
+
+.innerWrapper{
+    display:flex;
+    gap:8px;
+    flex:1;
+    align-items: center;
+}
+
+.innerWrapperRight{
+    display:flex;
+    gap:8px;
+    flex:1;
+    justify-content: flex-end;
+    align-items: center;
 }
