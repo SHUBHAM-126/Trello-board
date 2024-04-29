@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import intialData from './initialData.js'
 import SingleColumn from "./components/SingleColumn/SingleColumn.jsx";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 import AddCardModal from "./components/AddCardModal/AddCardModal.jsx";
 
 function App() {
@@ -55,6 +55,23 @@ function App() {
     setTaskList(newList)
 
   }
+
+  // Check localStorage for tasklist
+  useEffect(() => {
+
+    const localTasks = localStorage.getItem('tasklist');
+    if (localTasks != undefined) {
+      setTaskList(JSON.parse(localTasks))
+    }
+
+  }, [])
+
+  // Save to localStorage after updating the state
+  useEffect(() => {
+
+    localStorage.setItem('tasklist', JSON.stringify(taskList))
+
+  }, [taskList])
 
   return (
     <div>

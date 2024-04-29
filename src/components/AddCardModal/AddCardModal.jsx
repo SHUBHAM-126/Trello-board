@@ -205,9 +205,9 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
                     <option value="Done">Done</option>
                 </select>
                 <div className={styles.buttonsWrapper}>
-                    <button type='submit' className={styles.submitButton}>Submit</button>
+                    <button type='submit' className={styles.submitButton}>{taskEditDetails ? 'Save' : 'Add'}</button>
                     {taskEditDetails && (
-                        <button type='button' className={styles.deleteButton} onClick={handleDelete}>Delete the task</button>
+                        <button type='button' className={styles.deleteButton} onClick={handleDelete}>Delete</button>
                     )}
                 </div>
             </form>
