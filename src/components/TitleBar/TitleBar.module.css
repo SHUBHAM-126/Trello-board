@@ -1,0 +1,56 @@
+.titlebar {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 12px 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.title {
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.title:hover,
+.iconButton:hover {
+    background: var(--bg-primary);
+}
+
+.innerWrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.iconButton {
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    border: 0;
+    font-size: 20px;
+    color: #fff;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.shareButton {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 0;
+    border-radius: 5px;
+    display: flex;
+    color: #333;
+    font-size: 16px;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.shareButton:hover {
+    background: rgba(255, 255, 255, 1);
+}
