@@ -24,7 +24,7 @@ export default function Sidebar() {
     }, [])
 
     return (
-        <div className={isMobileSidebarOpen ? styles.sidebar : `${styles.sidebar} ${styles.active}`}>
+        <div className={!isMobileSidebarOpen ? styles.sidebar : `${styles.sidebar} ${styles.active}`}>
             <div className={styles.wordSpaceTitle}>
                 <RiTBoxFill />
                 <div>
