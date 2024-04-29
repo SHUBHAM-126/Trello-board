@@ -1,33 +1,52 @@
-.column{
-    padding:18px 16px;
+.column {
+    padding: 18px 16px;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-.column h2{
-    color:var(--font-light);
-    font-size:20px;
+
+.column h2 {
+    color: var(--font-light);
+    font-size: 20px;
     font-weight: 500;
-    margin-bottom:20px;
-    padding:0 12px;
+    margin-bottom: 20px;
+    padding: 0 12px;
 }
-.tasksWrapper{
+
+.tasksWrapper {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    min-height: 30px;
 }
-.addCardBtn{
+
+.addCardBtn {
     display: flex;
     align-items: center;
-    background: rgba(0,0,0,0);
-    border:0;
-    margin-top:5px;
-    padding:14px 10px;
-    color:#ccc;
-    gap:4px;
+    background: rgba(0, 0, 0, 0);
+    border: 0;
+    margin-top: 5px;
+    padding: 14px 10px;
+    color: #ccc;
+    gap: 4px;
     border-radius: 8px;
     cursor: pointer;
 }
-.addCardBtn:hover{
-    background:var(--bg-primary);
+
+.addCardBtn:hover {
+    background: var(--bg-primary);
+}
+
+@media(max-width:767px) {
+    .column {
+        width: 80vw;
+        padding:12px 8px;
+    }
+    .column h2{
+        padding:0 6px;
+    }
+    .addCardBtn{
+        padding:12px 10px;
+        font-size:16px;
+    }
 }

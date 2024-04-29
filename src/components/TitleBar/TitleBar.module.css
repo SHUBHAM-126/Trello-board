@@ -54,3 +54,30 @@
 .shareButton:hover {
     background: rgba(255, 255, 255, 1);
 }
+
+@media(max-width:767px) {
+    .titlebar {
+        padding: 6px 4px;
+        gap: 8px;
+    }
+
+    .innerWrapper {
+        gap: 4px;
+    }
+
+    .title {
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .iconButton {
+        font-size: 12px;
+        height: 24px;
+        width: 24px;
+    }
+
+    .shareButton {
+        font-size: 12px;
+        padding: 6px;
+    }
+}

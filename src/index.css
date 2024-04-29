@@ -18,6 +18,7 @@
   margin: 0;
   font-family: "Roboto", sans-serif;
   letter-spacing: -0.02em;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 html,
@@ -93,4 +94,14 @@ a {
 .columns-wrapper > div{
   background:#191919;
   border-radius: 5px;
+}
+
+@media(max-width:767px){
+  .columns-wrapper{
+    overflow-x: auto;
+    width: 100vw;
+    min-height: 100vh;
+    padding:8px;
+    gap:8px;
+  }
 }

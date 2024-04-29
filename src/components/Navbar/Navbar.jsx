@@ -9,6 +9,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { AiOutlineBell } from "react-icons/ai";
 import Avatar from '../Avatar/Avatar';
 import icon from '../../assets/avatar.png'
+import { RiSearchLine } from "react-icons/ri";
 
 export default function Navbar({ setIsModalOpen, taskList, setTaskEditDetails }) {
 
@@ -17,7 +18,12 @@ export default function Navbar({ setIsModalOpen, taskList, setTaskEditDetails })
             <div className={styles.innerWrapper}>
                 <IconButton><CgMenuGridR /></IconButton>
                 <IconButton><HiOutlineHome /></IconButton>
-                <SearchBar taskList={taskList} setTaskEditDetails={setTaskEditDetails} setIsModalOpen={setIsModalOpen} />
+                <div className={styles.searchWrapper}>
+                    <SearchBar taskList={taskList} setTaskEditDetails={setTaskEditDetails} setIsModalOpen={setIsModalOpen} />
+                </div>
+                <div className={styles.mobileSearch}>
+                    <IconButton><RiSearchLine /></IconButton>
+                </div>
             </div>
             <a className={styles.logo}>
                 <BsTrello />

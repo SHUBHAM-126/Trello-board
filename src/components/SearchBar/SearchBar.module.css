@@ -47,3 +47,18 @@
     color: rgba(255,255,255,0.9);
     font-size:0.9rem;
 }
+
+@media(max-width:940px){
+    .searchForm input{
+        min-width: 120px;
+    }
+}
+
+@media(max-width:767px){
+    .searchForm{
+        height:30px;
+    }
+    .searchForm button{
+        font-size: 20px;
+    }
+}
