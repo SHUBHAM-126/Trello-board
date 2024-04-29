@@ -10,20 +10,20 @@ import { AiOutlineBell } from "react-icons/ai";
 import Avatar from '../Avatar/Avatar';
 import icon from '../../assets/avatar.png'
 
-export default function Navbar({ setIsModalOpen }) {
+export default function Navbar({ setIsModalOpen, taskList, setTaskEditDetails }) {
 
     return (
         <header className={styles.header}>
-            <div class={styles.innerWrapper}>
+            <div className={styles.innerWrapper}>
                 <IconButton><CgMenuGridR /></IconButton>
                 <IconButton><HiOutlineHome /></IconButton>
-                <SearchBar />
+                <SearchBar taskList={taskList} setTaskEditDetails={setTaskEditDetails} setIsModalOpen={setIsModalOpen} />
             </div>
             <a className={styles.logo}>
                 <img src={logo} alt='Trello' height={30} width={30} />
                 <h1>Trello</h1>
             </a>
-            <div class={styles.innerWrapperRight}>
+            <div className={styles.innerWrapperRight}>
 
                 <IconButton
                     onClick={() => setIsModalOpen(true)}

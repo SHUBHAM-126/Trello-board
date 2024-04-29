@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div>
-      <Navbar setIsModalOpen={setIsModalOpen} />
+      <Navbar setIsModalOpen={setIsModalOpen} taskList={taskList} setTaskEditDetails={setTaskEditDetails} />
       <div>
 
         <div className="columns-wrapper">
