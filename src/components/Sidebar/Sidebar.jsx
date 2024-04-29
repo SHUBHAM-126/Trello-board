@@ -4,10 +4,27 @@ import { FiTrello } from "react-icons/fi";
 import { MdOutlinePerson } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
 import { RiTBoxFill } from "react-icons/ri";
+import { useEffect, useState } from "react";
+import { LuArrowRight } from "react-icons/lu";
 
 export default function Sidebar() {
+
+    const [isMobile, setIsMobile] = useState(window?.innerWidth < 768);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+
+    // CHECK IF MOBILE
+    useEffect(() => {
+
+        const handleResize = () => setIsMobile(window?.innerWidth < 768)
+
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+
+    }, [])
+
     return (
-        <div className={styles.sidebar}>
+        <div className={isMobileSidebarOpen ? styles.sidebar : `${styles.sidebar} ${styles.active}`}>
             <div className={styles.wordSpaceTitle}>
                 <RiTBoxFill />
                 <div>
@@ -39,6 +56,15 @@ export default function Sidebar() {
                     <span>My Trello Board</span>
                 </li>
             </ul>
+
+            {isMobile && (
+                <button
+                    className={styles.openSidebar}
+                    onClick={() => setIsMobileSidebarOpen(prev => !prev)}
+                >
+                    <LuArrowRight />
+                </button>
+            )}
 
         </div>
     )
