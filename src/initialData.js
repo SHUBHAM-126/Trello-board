@@ -4,18 +4,18 @@ const data = [
         items: [
             {
                 taskId: '1',
-                taskTitle: 'Task 1',
-                taskDescription: 'This is some description'
+                taskTitle: 'Implement user authentication',
+                taskDescription: 'Implement user authentication using OAuth 2.0 for enhanced security and seamless login across platforms.'
             },
             {
                 taskId: '2',
-                taskTitle: 'Task 2',
-                taskDescription: 'This is some description'
+                taskTitle: 'Database Optimization',
+                taskDescription: 'Optimize database queries for improved application performance and scalability.'
             },
             {
                 taskId: '3',
-                taskTitle: 'Task 3',
-                taskDescription: 'This is some description'
+                taskTitle: 'Weather API integration',
+                taskDescription: 'Integrate third-party API for real-time weather updates to enhance user experience in a travel application.'
             }
         ]
     },
