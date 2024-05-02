@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import styles from './AddCardModal.module.css'
 import { IoCloseSharp } from "react-icons/io5";
 import { MdOutlineReportGmailerrorred } from "react-icons/md";
+import { useSnackbar } from 'notistack'
 
 const customStyles = {
     content: {
@@ -31,6 +32,8 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
     })
 
     const [error, setError] = useState('')
+
+    const { enqueueSnackbar } = useSnackbar()
 
     const handleChange = (e) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -76,6 +79,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
                 taskDescription: formData.description,
                 taskId: new Date().getTime().toString()
             }
+            enqueueSnackbar("Task saved.", { variant: 'info' })
         }
         // Editing card: Remove task from old list and add to new one
         else if (taskEditDetails && formData.selectedList !== taskEditDetails.listTitle) {
@@ -98,6 +102,8 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
                 }
             )
 
+            enqueueSnackbar("Task saved.", { variant: 'info' })
+
         }
         // Adding new task 
         else {
@@ -108,6 +114,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
                     taskId: new Date().getTime().toString()
                 }
             )
+            enqueueSnackbar("Task added successfully.", { variant: 'success' })
         }
 
         newTaskList[listIndex] = {
@@ -116,11 +123,8 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
         }
 
         setTaskList(newTaskList)
-
         setTaskEditDetails(null)
-
         setFormData({ title: '', description: '', selectedList: '' })
-
         setIsModalOpen(false)
 
     }
@@ -164,6 +168,7 @@ export default function AddCardModal({ isModalOpen, setIsModalOpen, taskList, se
         setTaskList(newTaskList)
         setTaskEditDetails(null)
         setFormData({ title: '', description: '', selectedList: '' })
+        enqueueSnackbar("Task deleted.", { variant: 'error' })
         setIsModalOpen(false)
     }
 
